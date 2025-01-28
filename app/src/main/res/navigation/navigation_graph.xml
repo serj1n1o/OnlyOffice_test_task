@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/authFragment">
+
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.auth.ui.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth">
+        <action
+            android:id="@+id/action_authFragment_to_documentsFragment"
+            app:destination="@id/documentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/documentsFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.documents.ui.DocumentsFragment"
+        android:label="fragment_documents"
+        tools:layout="@layout/fragment_documents">
+        <action
+            android:id="@+id/action_documentsFragment_to_folderContentsFragment"
+            app:destination="@id/folderContentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/folderContentsFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.documents.ui.FolderContentsFragment"
+        android:label="fragment_folder_contents"
+        tools:layout="@layout/fragment_folder_contents" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.auth.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/roomsFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.other.RoomsFragment"
+        android:label="fragment_rooms"
+        tools:layout="@layout/fragment_rooms" />
+    <fragment
+        android:id="@+id/trashFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.other.TrashFragment"
+        android:label="fragment_trash"
+        tools:layout="@layout/fragment_trash" />
+</navigation>
