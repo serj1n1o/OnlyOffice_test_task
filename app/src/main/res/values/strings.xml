@@ -9,7 +9,9 @@
     <string name="txt_big_rooms">ROOMS</string>
     <string name="txt_connect_to_office">Connect to ONLYOFFICE</string>
     <string name="text_login">Login</string>
+    <string name="text_logout">Logout</string>
     <string name="txt_portal">Portal</string>
     <string name="txt_e_mail">E-mail</string>
     <string name="txt_password">Password</string>
+    <string name="text_new_folder">New Folder</string>
 </resources>

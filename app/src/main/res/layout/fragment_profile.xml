@@ -1,14 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/size_16dp"
+    android:orientation="vertical"
     tools:context=".auth.ui.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        style="@style/TextTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_56dp"
+        android:text="@string/txt_profile" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/profilePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/size_56dp"
+        android:src="@drawable/ic_photo_account" />
+
+    <TextView
+        android:id="@+id/userName"
+        style="@style/TextTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/size_16dp"
+        tools:text="User Name" />
+
+    <TextView
+        style="@style/TextMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/size_16dp"
+        android:text="@string/txt_e_mail" />
+
+    <TextView
+        android:id="@+id/userEmail"
+        style="@style/TextMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="@dimen/text_14sp"
+        tools:text="saruman_7777@mail.ru" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/size_56dp"
+        android:paddingHorizontal="@dimen/size_56dp"
+        android:text="@string/text_logout"
+        android:textColor="@color/white" />
+
+</LinearLayout>
