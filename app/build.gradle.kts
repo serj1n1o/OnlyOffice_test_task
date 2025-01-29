@@ -41,11 +41,15 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.room.ktx)
-    kapt(libs.androidx.room.compiler)
-
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.gson)
 
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.core.ktx)

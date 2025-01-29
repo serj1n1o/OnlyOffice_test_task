@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/size_16dp"
     android:orientation="vertical"
-    tools:context=".auth.ui.ProfileFragment">
+    tools:context=".auth.ui.view.ProfileFragment">
 
     <TextView
         style="@style/TextTitle"

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.bryukhanov.onlyofficetesttask.auth.ui.AuthFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.auth.ui.view.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth">
         <action
@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_folder_contents" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.bryukhanov.onlyofficetesttask.auth.ui.ProfileFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.auth.ui.view.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
         <action
