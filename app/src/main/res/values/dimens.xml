@@ -9,5 +9,6 @@
     <dimen name="size_24dp">24dp</dimen>
     <dimen name="size_56dp">56dp</dimen>
     <dimen name="size_8dp">8dp</dimen>
+    <dimen name="size_52dp">52dp</dimen>
 
 </resources>

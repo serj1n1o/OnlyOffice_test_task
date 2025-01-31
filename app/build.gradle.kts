@@ -51,6 +51,9 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.gson)
 
+    implementation(libs.glide)
+    annotationProcessor(libs.glide.compiler)
+
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

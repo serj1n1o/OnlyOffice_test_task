@@ -6,4 +6,5 @@ sealed interface AuthState {
 
     data object AuthSuccess : AuthState
 
+    data object Default : AuthState
 }

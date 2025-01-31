@@ -5,13 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bryukhanov.onlyofficetesttask.auth.domain.api.AuthRepository
+import com.bryukhanov.onlyofficetesttask.auth.domain.api.ClearTokenUseCase
 import com.bryukhanov.onlyofficetesttask.auth.domain.model.AuthRequest
 import com.bryukhanov.onlyofficetesttask.auth.domain.model.StatusCode
 import kotlinx.coroutines.launch
 
-class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
+class AuthViewModel(
+    private val authRepository: AuthRepository,
+    private val clearTokenUseCase: ClearTokenUseCase,
+) : ViewModel() {
 
-    private val authState = MutableLiveData<AuthState>()
+    private val authState = MutableLiveData<AuthState>(AuthState.Default)
     fun getAuthState(): LiveData<AuthState> = authState
 
     private val loginData = MutableLiveData<LoginDataState>()
@@ -19,6 +23,27 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
     fun setLoginData(data: LoginDataState) {
         loginData.postValue(data)
+    }
+
+    private val userData = MutableLiveData<UserState>(UserState.Empty)
+    fun getUserData(): LiveData<UserState> = userData
+
+    fun userData() {
+        viewModelScope.launch {
+            val user = authRepository.getUserData()
+            if (user != null) {
+                userData.postValue(UserState.Content(user))
+            } else {
+                userData.postValue(UserState.Empty)
+            }
+        }
+    }
+
+    fun logout() {
+        val portal = loginData.value?.portalAddress
+        viewModelScope.launch {
+            if (portal != null) authRepository.logout(portal)
+        }
     }
 
     fun authenticate() {
@@ -36,9 +61,14 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         }
     }
 
+    fun clearAuthData() {
+        clearTokenUseCase.clearAuth()
+    }
+
     private fun processResult(code: Int) {
         if (code == StatusCode.CODE_OK) {
-            authState.postValue(AuthState.AuthSuccess)
+            authState.value = AuthState.AuthSuccess
+            authState.postValue(AuthState.Default)
         } else {
             authState.postValue(AuthState.ErrorAuth(code))
         }
