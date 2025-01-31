@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient
 import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 
 class OfficeNetworkClient(private val tokenStorage: TokenStorage) : NetworkClient {
 
@@ -23,6 +24,8 @@ class OfficeNetworkClient(private val tokenStorage: TokenStorage) : NetworkClien
                     response.apply { resultCode = response.statusCode }
                 } catch (e: HttpException) {
                     Response().apply { resultCode = e.code() }
+                } catch (e: IOException) {
+                    Response().apply { resultCode = StatusCode.CODE_FAILED }
                 }
             }
         } else {

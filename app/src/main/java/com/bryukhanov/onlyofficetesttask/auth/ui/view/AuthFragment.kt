@@ -1,6 +1,7 @@
 package com.bryukhanov.onlyofficetesttask.auth.ui.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +53,9 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
         }
 
         binding.editTextPortal.doOnTextChanged { text, _, _, _ ->
+            if (binding.inputLayoutPortal?.error != null && !text.isNullOrEmpty()) {
+                binding.inputLayoutPortal?.error = null
+            }
             portalAddress = if (!text.isNullOrEmpty()) {
                 text.toString()
             } else {
@@ -62,6 +66,9 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
         }
 
         binding.editTextEmail.doOnTextChanged { text, _, _, _ ->
+            if (binding.inputLayoutEmail?.error != null && !text.isNullOrEmpty()) {
+                binding.inputLayoutEmail?.error = null
+            }
             email = if (!text.isNullOrEmpty()) {
                 text.toString()
             } else {
@@ -82,8 +89,18 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
         }
 
         binding.btnLogin.setOnClickListener {
-            binding.progressBar.isVisible = true
-            viewModel.authenticate()
+            Log.d("TAG", "login btn: $portalAddress\n $email")
+            if (isValidPortalAddress(portalAddress) && isValidEmail(email)) {
+                binding.progressBar.isVisible = true
+                viewModel.authenticate()
+            }
+            if (!isValidPortalAddress(portalAddress)) {
+                binding.inputLayoutPortal?.error = getString(R.string.error_input_portal)
+            }
+            if (!isValidEmail(email)) {
+                binding.inputLayoutEmail?.error = "Email должен быть в формате test@gmail.com"
+            }
+
         }
     }
 
@@ -144,6 +161,21 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
                 password = password
             )
         )
+    }
+
+    private fun isValidPortalAddress(address: String?): Boolean {
+        val portalRegex = Regex(
+            pattern = "^https://[a-zA-Z0-9.-]+\\.(com|ru|net|org|edu|info|biz|gov|io|co|us|uk)(/.*)?\$"
+        )
+        return address?.matches(portalRegex) ?: false
+    }
+
+    private fun isValidEmail(email: String?): Boolean {
+        Log.d("TAG", "isValidEmail: $email")
+        val emailRegex = Regex(
+            pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+        )
+        return email?.matches(emailRegex) ?: false
     }
 
 }
