@@ -11,6 +11,8 @@ interface NetworkClient {
 
     suspend fun doRequestDocs(): RequestResult<Response>
 
+    suspend fun doRequestFolderContent(folderId: Int): RequestResult<Response>
+
     suspend fun doRequestRooms(): RequestResult<Response>
 
     suspend fun doRequestTrash(): RequestResult<Response>

@@ -13,4 +13,6 @@ interface DocumentsRepository {
     fun getTrash(): Flow<RequestResult<Pair<List<Folder>, List<File>>>>
 
     fun getDocs(): Flow<RequestResult<Pair<List<Folder>, List<File>>>>
+
+    fun getFolderContent(folderId: Int): Flow<RequestResult<Pair<List<Folder>, List<File>>>>
 }

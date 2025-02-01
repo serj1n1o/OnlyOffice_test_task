@@ -11,6 +11,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface OfficeApi {
 
@@ -35,5 +36,8 @@ interface OfficeApi {
 
     @GET("/api/2.0/files/@trash")
     suspend fun getTrash(): TrashResponse
+
+    @GET("/api/2.0/files/{folderId}")
+    suspend fun getFolderContent(@Path("folderId") folderId: Int): DocumentsResponse
 
 }

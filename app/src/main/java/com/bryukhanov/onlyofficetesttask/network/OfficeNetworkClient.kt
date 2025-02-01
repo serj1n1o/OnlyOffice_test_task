@@ -74,6 +74,22 @@ class OfficeNetworkClient(private val tokenStorage: TokenStorage) : NetworkClien
         }
     }
 
+    override suspend fun doRequestFolderContent(folderId: Int): RequestResult<Response> {
+        val portal = tokenStorage.getPortal()
+        return withContext(Dispatchers.IO) {
+            try {
+                if (portal != null) {
+                    val response = createApi(portal).getFolderContent(folderId)
+                    RequestResult.Success(response)
+                } else {
+                    RequestResult.Error()
+                }
+            } catch (e: HttpException) {
+                RequestResult.Error()
+            }
+        }
+    }
+
     override suspend fun doRequestRooms(): RequestResult<Response> {
         val portal = tokenStorage.getPortal()
         return withContext(Dispatchers.IO) {

@@ -68,10 +68,30 @@ class DocumentsRepositoryImpl(private val networkClient: NetworkClient) : Docume
         }
     }
 
+    override fun getFolderContent(folderId: Int): Flow<RequestResult<Pair<List<Folder>, List<File>>>> =
+        flow {
+            when (val result = networkClient.doRequestDocs()) {
+                is RequestResult.Error -> {
+                    emit(RequestResult.Error())
+                }
+
+                is RequestResult.Success -> {
+                    val folders = (result.data as DocumentsResponse).response.folders.map {
+                        mapFolderDtoToFolder(it)
+                    }
+                    val files = result.data.response.files.map {
+                        mapFileDtoToFile(it)
+                    }
+                emit(RequestResult.Success(Pair(folders, files)))
+            }
+        }
+    }
+
     private fun mapFolderDtoToFolder(folderDto: FolderDto): Folder {
         return Folder(
             title = folderDto.title,
-            fileType = folderDto.fileEntryType
+            fileType = folderDto.fileEntryType,
+            id = folderDto.id
         )
     }
 
