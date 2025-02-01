@@ -1,10 +1,10 @@
-package com.bryukhanov.onlyofficetesttask.auth.data.dtoUser
+package com.bryukhanov.onlyofficetesttask.documents.data.dtoTrash
 
 import com.bryukhanov.onlyofficetesttask.auth.data.dto.Response
 
-data class UserResponse(
+data class TrashResponse(
     val count: Int,
-    val response: UserData,
+    val response: TrashDocs,
     val status: Int,
     val statusCode: Int,
 ) : Response()

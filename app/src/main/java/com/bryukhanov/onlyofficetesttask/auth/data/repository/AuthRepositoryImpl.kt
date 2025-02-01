@@ -2,12 +2,12 @@ package com.bryukhanov.onlyofficetesttask.auth.data.repository
 
 import com.bryukhanov.onlyofficetesttask.auth.data.dto.AuthResponse
 import com.bryukhanov.onlyofficetesttask.auth.data.dtoUser.UserResponse
-import com.bryukhanov.onlyofficetesttask.auth.data.local.TokenStorage
-import com.bryukhanov.onlyofficetesttask.auth.data.network.NetworkClient
 import com.bryukhanov.onlyofficetesttask.auth.domain.api.AuthRepository
 import com.bryukhanov.onlyofficetesttask.auth.domain.model.AuthRequest
 import com.bryukhanov.onlyofficetesttask.auth.domain.model.StatusCode
 import com.bryukhanov.onlyofficetesttask.auth.domain.model.User
+import com.bryukhanov.onlyofficetesttask.network.NetworkClient
+import com.bryukhanov.onlyofficetesttask.util.TokenStorage
 
 class AuthRepositoryImpl(
     private val networkClient: NetworkClient,

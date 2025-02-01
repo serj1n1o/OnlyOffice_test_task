@@ -43,7 +43,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     }
                 }
 
-                UserState.Empty -> {}
+                UserState.Empty -> {
+                    binding.userName.text = getString(R.string.error_user_data)
+                    binding.userEmail.text = getString(R.string.error_user_data)
+                }
             }
         }
 

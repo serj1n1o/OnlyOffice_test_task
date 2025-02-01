@@ -20,9 +20,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthFragment : BaseFragment<FragmentAuthBinding>() {
 
-    private var portalAddress: String? = "https://testdocspaceportal.onlyoffice.com/"
-    private var email: String? = "1one.test901@gmail.com"
-    private var password: String? = "Testpass123"
+    private var portalAddress: String? = null
+    private var email: String? = null
+    private var password: String? = null
 
     private val viewModel by viewModel<AuthViewModel>()
 
@@ -89,7 +89,6 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
         }
 
         binding.btnLogin.setOnClickListener {
-            Log.d("TAG", "login btn: $portalAddress\n $email")
             if (isValidPortalAddress(portalAddress) && isValidEmail(email)) {
                 binding.progressBar.isVisible = true
                 viewModel.authenticate()
@@ -98,7 +97,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
                 binding.inputLayoutPortal?.error = getString(R.string.error_input_portal)
             }
             if (!isValidEmail(email)) {
-                binding.inputLayoutEmail?.error = "Email должен быть в формате test@gmail.com"
+                binding.inputLayoutEmail?.error = getString(R.string.email_input_error)
             }
 
         }

@@ -1,4 +1,4 @@
-package com.bryukhanov.onlyofficetesttask.auth.data.local
+package com.bryukhanov.onlyofficetesttask.util
 
 import android.content.Context
 import android.content.SharedPreferences

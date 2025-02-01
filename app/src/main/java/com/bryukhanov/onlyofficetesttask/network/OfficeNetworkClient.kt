@@ -1,10 +1,11 @@
-package com.bryukhanov.onlyofficetesttask.auth.data.network
+package com.bryukhanov.onlyofficetesttask.network
 
 import com.bryukhanov.onlyofficetesttask.auth.data.dto.Response
-import com.bryukhanov.onlyofficetesttask.auth.data.local.TokenStorage
 import com.bryukhanov.onlyofficetesttask.auth.domain.model.AuthRequest
 import com.bryukhanov.onlyofficetesttask.auth.domain.model.StatusCode
+import com.bryukhanov.onlyofficetesttask.util.RequestResult
 import com.bryukhanov.onlyofficetesttask.util.TokenInterceptor
+import com.bryukhanov.onlyofficetesttask.util.TokenStorage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -57,7 +58,55 @@ class OfficeNetworkClient(private val tokenStorage: TokenStorage) : NetworkClien
 
     }
 
-    private fun createApi(portalAddress: String): AuthOfficeApi {
+    override suspend fun doRequestDocs(): RequestResult<Response> {
+        val portal = tokenStorage.getPortal()
+        return withContext(Dispatchers.IO) {
+            try {
+                if (portal != null) {
+                    val response = createApi(portal).getDocuments()
+                    RequestResult.Success(response)
+                } else {
+                    RequestResult.Error()
+                }
+            } catch (e: HttpException) {
+                RequestResult.Error()
+            }
+        }
+    }
+
+    override suspend fun doRequestRooms(): RequestResult<Response> {
+        val portal = tokenStorage.getPortal()
+        return withContext(Dispatchers.IO) {
+            try {
+                if (portal != null) {
+                    val response = createApi(portal).getRoom()
+                    RequestResult.Success(response)
+                } else {
+                    RequestResult.Error()
+                }
+            } catch (e: HttpException) {
+                RequestResult.Error()
+            }
+        }
+    }
+
+    override suspend fun doRequestTrash(): RequestResult<Response> {
+        val portal = tokenStorage.getPortal()
+        return withContext(Dispatchers.IO) {
+            try {
+                if (portal != null) {
+                    val response = createApi(portal).getTrash()
+                    RequestResult.Success(response)
+                } else {
+                    RequestResult.Error()
+                }
+            } catch (e: HttpException) {
+                RequestResult.Error()
+            }
+        }
+    }
+
+    private fun createApi(portalAddress: String): OfficeApi {
 
         val client = OkHttpClient.Builder()
             .addInterceptor(TokenInterceptor(tokenStorage))
@@ -68,7 +117,7 @@ class OfficeNetworkClient(private val tokenStorage: TokenStorage) : NetworkClien
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(AuthOfficeApi::class.java)
+            .create(OfficeApi::class.java)
     }
 
 }

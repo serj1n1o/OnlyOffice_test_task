@@ -19,4 +19,6 @@
     <string name="user_could_not_be_found">The user could not be found</string>
     <string name="please_try_again_later">Too many login attempts. Please try again later</string>
     <string name="error_input_portal">Адресс в формате http://__.com</string>
+    <string name="email_input_error">Email должен быть в формате test@gmail.com</string>
+    <string name="error_user_data">Не удалось получить данные</string>
 </resources>

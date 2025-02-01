@@ -1,0 +1,28 @@
+package com.bryukhanov.onlyofficetesttask.documents.data.dtoRoom
+
+data class FolderInRooms(
+    val access: Int,
+    val canShare: Boolean,
+    val created: String,
+    val denyDownload: Boolean,
+    val fileEntryType: Int,
+    val filesCount: Int,
+    val foldersCount: Int,
+    val id: Int,
+    val inRoom: Boolean,
+    val indexing: Boolean,
+    val logo: Logo,
+    val mute: Boolean,
+    val new: Int,
+    val parentId: Int,
+    val pinned: Boolean,
+    val `private`: Boolean,
+    val roomType: Int,
+    val rootFolderId: Int,
+    val rootFolderType: Int,
+    val shared: Boolean,
+    val tags: List<Any>,
+    val title: String,
+    val updated: String,
+    val watermark: Watermark,
+)

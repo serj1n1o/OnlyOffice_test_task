@@ -25,7 +25,7 @@ class AuthViewModel(
         loginData.postValue(data)
     }
 
-    private val userData = MutableLiveData<UserState>(UserState.Empty)
+    private val userData = MutableLiveData<UserState>()
     fun getUserData(): LiveData<UserState> = userData
 
     fun userData() {
