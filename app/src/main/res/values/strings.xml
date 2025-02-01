@@ -21,4 +21,5 @@
     <string name="error_input_portal">Адресс в формате http://__.com</string>
     <string name="email_input_error">Email должен быть в формате test@gmail.com</string>
     <string name="error_user_data">Не удалось получить данные</string>
+    <string name="empty_data">Данные отсутствуют</string>
 </resources>

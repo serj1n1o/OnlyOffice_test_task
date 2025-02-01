@@ -12,11 +12,13 @@
         tools:layout="@layout/fragment_auth">
         <action
             android:id="@+id/action_authFragment_to_documentsFragment"
-            app:destination="@id/documentsFragment" />
+            app:destination="@id/documentsFragment"
+            app:popUpTo="@id/authFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/documentsFragment"
-        android:name="com.bryukhanov.onlyofficetesttask.documents.ui.DocumentsFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.documents.ui.docs.DocumentsFragment"
         android:label="fragment_documents"
         tools:layout="@layout/fragment_documents">
         <action
@@ -25,9 +27,14 @@
     </fragment>
     <fragment
         android:id="@+id/folderContentsFragment"
-        android:name="com.bryukhanov.onlyofficetesttask.documents.ui.FolderContentsFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.documents.ui.docs.FolderContentsFragment"
         android:label="fragment_folder_contents"
-        tools:layout="@layout/fragment_folder_contents" />
+        tools:layout="@layout/fragment_folder_contents">
+        <argument
+            android:name="folder"
+            app:argType="com.bryukhanov.onlyofficetesttask.documents.domain.model.Folder"
+            app:nullable="false" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.bryukhanov.onlyofficetesttask.auth.ui.view.ProfileFragment"
@@ -39,12 +46,12 @@
     </fragment>
     <fragment
         android:id="@+id/roomsFragment"
-        android:name="com.bryukhanov.onlyofficetesttask.other.RoomsFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.documents.ui.rooms.RoomsFragment"
         android:label="fragment_rooms"
         tools:layout="@layout/fragment_rooms" />
     <fragment
         android:id="@+id/trashFragment"
-        android:name="com.bryukhanov.onlyofficetesttask.other.TrashFragment"
+        android:name="com.bryukhanov.onlyofficetesttask.documents.ui.trash.TrashFragment"
         android:label="fragment_trash"
         tools:layout="@layout/fragment_trash" />
 </navigation>

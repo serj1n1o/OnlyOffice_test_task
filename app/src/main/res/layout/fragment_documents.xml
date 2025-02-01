@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/size_16dp"
     android:orientation="vertical"
-    tools:context=".documents.ui.DocumentsFragment">
+    tools:context=".documents.ui.docs.DocumentsFragment">
 
     <TextView
         style="@style/TextTitle"

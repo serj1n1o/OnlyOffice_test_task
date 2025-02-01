@@ -70,7 +70,7 @@ class DocumentsRepositoryImpl(private val networkClient: NetworkClient) : Docume
 
     override fun getFolderContent(folderId: Int): Flow<RequestResult<Pair<List<Folder>, List<File>>>> =
         flow {
-            when (val result = networkClient.doRequestDocs()) {
+            when (val result = networkClient.doRequestFolderContent(folderId)) {
                 is RequestResult.Error -> {
                     emit(RequestResult.Error())
                 }

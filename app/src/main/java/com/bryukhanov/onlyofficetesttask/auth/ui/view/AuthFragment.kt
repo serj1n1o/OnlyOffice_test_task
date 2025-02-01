@@ -1,7 +1,6 @@
 package com.bryukhanov.onlyofficetesttask.auth.ui.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -170,7 +169,6 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
     }
 
     private fun isValidEmail(email: String?): Boolean {
-        Log.d("TAG", "isValidEmail: $email")
         val emailRegex = Regex(
             pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
         )
