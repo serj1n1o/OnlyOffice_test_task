@@ -146,6 +146,11 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
         }
     }
 
+    override fun onDestroyView() {
+        findNavController().graph.setStartDestination(R.id.documentsFragment)
+        super.onDestroyView()
+    }
+
     private fun openDocuments() {
         findNavController().navigate(R.id.action_authFragment_to_documentsFragment)
         binding.progressBar.isVisible = false

@@ -19,7 +19,6 @@
         android:id="@+id/rvRooms"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/size_80dp"
         android:layout_marginTop="@dimen/size_16dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
