@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.bryukhanov.onlyofficetesttask.BaseFragment
 import com.bryukhanov.onlyofficetesttask.R
-import com.bryukhanov.onlyofficetesttask.auth.ui.viewmodel.AuthViewModel
+import com.bryukhanov.onlyofficetesttask.auth.ui.viewmodel.ProfileViewModel
 import com.bryukhanov.onlyofficetesttask.auth.ui.viewmodel.UserState
 import com.bryukhanov.onlyofficetesttask.databinding.FragmentProfileBinding
 import com.bumptech.glide.Glide
@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
-    private val viewModel by viewModel<AuthViewModel>()
+    private val viewModel by viewModel<ProfileViewModel>()
 
     override fun createBinding(
         inflater: LayoutInflater,

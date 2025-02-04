@@ -7,7 +7,7 @@ interface AuthRepository {
 
     suspend fun authenticate(portalName: String, authRequest: AuthRequest): Int
 
-    suspend fun logout(portalName: String): Int
+    suspend fun logout(): Int
 
     suspend fun getUserData(): User?
 }

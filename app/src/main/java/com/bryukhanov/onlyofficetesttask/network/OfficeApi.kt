@@ -9,7 +9,6 @@ import com.bryukhanov.onlyofficetesttask.documents.data.dtoRoom.RoomResponse
 import com.bryukhanov.onlyofficetesttask.documents.data.dtoTrash.TrashResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -21,9 +20,7 @@ interface OfficeApi {
     ): AuthResponse
 
     @POST("/api/2.0/authentication/logout")
-    suspend fun logout(
-        @Header("Host") host: String,
-    ): LogoutResponse
+    suspend fun logout(): LogoutResponse
 
     @GET("/api/2.0/people/@self")
     suspend fun getProfile(): UserResponse

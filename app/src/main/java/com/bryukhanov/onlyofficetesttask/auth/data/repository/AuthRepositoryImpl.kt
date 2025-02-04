@@ -25,9 +25,10 @@ class AuthRepositoryImpl(
         return result.resultCode
     }
 
-    override suspend fun logout(portalName: String): Int {
+    override suspend fun logout(): Int {
+        val portal = tokenStorage.getPortal()
         tokenStorage.clearData()
-        return networkClient.doRequestAuth(portalAddress = portalName, null).resultCode
+        return networkClient.doRequestAuth(portalAddress = portal!!, null).resultCode
     }
 
     override suspend fun getUserData(): User? {

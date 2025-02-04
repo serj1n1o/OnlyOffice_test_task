@@ -25,27 +25,6 @@ class AuthViewModel(
         loginData.postValue(data)
     }
 
-    private val userData = MutableLiveData<UserState>()
-    fun getUserData(): LiveData<UserState> = userData
-
-    fun userData() {
-        viewModelScope.launch {
-            val user = authRepository.getUserData()
-            if (user != null) {
-                userData.postValue(UserState.Content(user))
-            } else {
-                userData.postValue(UserState.Empty)
-            }
-        }
-    }
-
-    fun logout() {
-        val portal = loginData.value?.portalAddress
-        viewModelScope.launch {
-            if (portal != null) authRepository.logout(portal)
-        }
-    }
-
     fun authenticate() {
         val portal = loginData.value?.portalAddress
         val email = loginData.value?.email

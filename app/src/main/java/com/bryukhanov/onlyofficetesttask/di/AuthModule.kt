@@ -5,6 +5,7 @@ import com.bryukhanov.onlyofficetesttask.auth.domain.ClearTokenUseCaseImpl
 import com.bryukhanov.onlyofficetesttask.auth.domain.api.AuthRepository
 import com.bryukhanov.onlyofficetesttask.auth.domain.api.ClearTokenUseCase
 import com.bryukhanov.onlyofficetesttask.auth.ui.viewmodel.AuthViewModel
+import com.bryukhanov.onlyofficetesttask.auth.ui.viewmodel.ProfileViewModel
 import com.bryukhanov.onlyofficetesttask.network.NetworkClient
 import com.bryukhanov.onlyofficetesttask.network.OfficeNetworkClient
 import com.bryukhanov.onlyofficetesttask.util.TokenStorage
@@ -15,6 +16,10 @@ val authModule = module {
 
     viewModel {
         AuthViewModel(authRepository = get(), clearTokenUseCase = get())
+    }
+
+    viewModel {
+        ProfileViewModel(authRepository = get())
     }
 
     factory<ClearTokenUseCase> {

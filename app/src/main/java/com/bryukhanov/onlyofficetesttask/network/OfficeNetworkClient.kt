@@ -32,7 +32,7 @@ class OfficeNetworkClient(private val tokenStorage: TokenStorage) : NetworkClien
         } else {
             return withContext(Dispatchers.IO) {
                 try {
-                    val response = createApi(portalAddress).logout(portalAddress)
+                    val response = createApi(portalAddress).logout()
                     response.apply { resultCode = response.statusCode }
                 } catch (e: HttpException) {
                     Response().apply { resultCode = StatusCode.CODE_FAILED }
