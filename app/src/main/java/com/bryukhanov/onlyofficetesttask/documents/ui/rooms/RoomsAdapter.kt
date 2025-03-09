@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bryukhanov.onlyofficetesttask.databinding.ItemDocumentsBinding
 import com.bryukhanov.onlyofficetesttask.documents.domain.model.Room
 
-class RoomsAdapter : RecyclerView.Adapter<RoomsAdapter.RoomsViewHolder>() {
+class RoomsAdapter : RecyclerView.Adapter<RoomsViewHolder>() {
 
     private val items = mutableListOf<Room>()
 
@@ -33,10 +33,4 @@ class RoomsAdapter : RecyclerView.Adapter<RoomsAdapter.RoomsViewHolder>() {
         holder.bind(items[position])
     }
 
-    inner class RoomsViewHolder(private val binding: ItemDocumentsBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Room) {
-            binding.nameDocument.text = item.title
-        }
-    }
 }
