@@ -1,0 +1,139 @@
+package com.bryukhanov.onlyofficetesttask.network
+
+import com.bryukhanov.onlyofficetesttask.auth.data.dto.Response
+import com.bryukhanov.onlyofficetesttask.auth.domain.model.AuthRequest
+import com.bryukhanov.onlyofficetesttask.auth.domain.model.StatusCode
+import com.bryukhanov.onlyofficetesttask.util.RequestResult
+import com.bryukhanov.onlyofficetesttask.util.TokenInterceptor
+import com.bryukhanov.onlyofficetesttask.util.TokenStorage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import retrofit2.HttpException
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
+
+class OfficeNetworkClient(private val tokenStorage: TokenStorage) : NetworkClient {
+
+    override suspend fun doRequestAuth(portalAddress: String, dto: Any?): Response {
+
+        if (dto is AuthRequest) {
+            return withContext(Dispatchers.IO) {
+                try {
+                    val response = createApi(portalAddress).authenticate(dto)
+                    response.apply { resultCode = response.statusCode }
+                } catch (e: HttpException) {
+                    Response().apply { resultCode = e.code() }
+                } catch (e: IOException) {
+                    Response().apply { resultCode = StatusCode.CODE_FAILED }
+                }
+            }
+        } else {
+            return withContext(Dispatchers.IO) {
+                try {
+                    val response = createApi(portalAddress).logout()
+                    response.apply { resultCode = response.statusCode }
+                } catch (e: HttpException) {
+                    Response().apply { resultCode = StatusCode.CODE_FAILED }
+                }
+            }
+        }
+
+    }
+
+    override suspend fun doRequestUser(portalAddress: String?): Response {
+        return withContext(Dispatchers.IO) {
+            try {
+                if (portalAddress != null) {
+                    val response = createApi(portalAddress).getProfile()
+                    response.apply { resultCode = response.statusCode }
+                } else {
+                    Response().apply { resultCode = StatusCode.CODE_FAILED }
+                }
+            } catch (e: HttpException) {
+                Response().apply { resultCode = StatusCode.CODE_FAILED }
+            }
+        }
+
+    }
+
+    override suspend fun doRequestDocs(): RequestResult<Response> {
+        val portal = tokenStorage.getPortal()
+        return withContext(Dispatchers.IO) {
+            try {
+                if (portal != null) {
+                    val response = createApi(portal).getDocuments()
+                    RequestResult.Success(response)
+                } else {
+                    RequestResult.Error()
+                }
+            } catch (e: HttpException) {
+                RequestResult.Error()
+            }
+        }
+    }
+
+    override suspend fun doRequestFolderContent(folderId: Int): RequestResult<Response> {
+        val portal = tokenStorage.getPortal()
+        return withContext(Dispatchers.IO) {
+            try {
+                if (portal != null) {
+                    val response = createApi(portal).getFolderContent(folderId)
+                    RequestResult.Success(response)
+                } else {
+                    RequestResult.Error()
+                }
+            } catch (e: HttpException) {
+                RequestResult.Error()
+            }
+        }
+    }
+
+    override suspend fun doRequestRooms(): RequestResult<Response> {
+        val portal = tokenStorage.getPortal()
+        return withContext(Dispatchers.IO) {
+            try {
+                if (portal != null) {
+                    val response = createApi(portal).getRoom()
+                    RequestResult.Success(response)
+                } else {
+                    RequestResult.Error()
+                }
+            } catch (e: HttpException) {
+                RequestResult.Error()
+            }
+        }
+    }
+
+    override suspend fun doRequestTrash(): RequestResult<Response> {
+        val portal = tokenStorage.getPortal()
+        return withContext(Dispatchers.IO) {
+            try {
+                if (portal != null) {
+                    val response = createApi(portal).getTrash()
+                    RequestResult.Success(response)
+                } else {
+                    RequestResult.Error()
+                }
+            } catch (e: HttpException) {
+                RequestResult.Error()
+            }
+        }
+    }
+
+    private fun createApi(portalAddress: String): OfficeApi {
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(TokenInterceptor(tokenStorage))
+            .build()
+
+        return Retrofit.Builder()
+            .baseUrl(portalAddress)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(OfficeApi::class.java)
+    }
+
+}

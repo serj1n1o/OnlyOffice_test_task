@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">OnlyOffice test task</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_documents">Documents</string>
+    <string name="txt_rooms">Rooms</string>
+    <string name="txt_trash">Trash</string>
+    <string name="txt_profile">Profile</string>
+    <string name="txt_big_trash">TRASH</string>
+    <string name="txt_big_rooms">ROOMS</string>
+    <string name="txt_connect_to_office">Connect to ONLYOFFICE</string>
+    <string name="text_login">Login</string>
+    <string name="text_logout">Logout</string>
+    <string name="txt_portal">Portal</string>
+    <string name="txt_e_mail">E-mail</string>
+    <string name="txt_password">Password</string>
+    <string name="text_new_folder">New Folder</string>
+    <string name="user_auth_failed">User authentication failed</string>
+    <string name="username_pass_is_empty">userName, password or passwordHash is empty</string>
+    <string name="user_could_not_be_found">The user could not be found</string>
+    <string name="please_try_again_later">Too many login attempts. Please try again later</string>
+    <string name="error_input_portal">Адресс в формате http://__.com</string>
+    <string name="email_input_error">Email должен быть в формате test@gmail.com</string>
+    <string name="error_user_data">Не удалось получить данные</string>
+    <string name="empty_data">Данные отсутствуют</string>
 </resources>

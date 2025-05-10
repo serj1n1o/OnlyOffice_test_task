@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/documentsFragment"
+        android:icon="@drawable/ic_document_24"
+        android:title="@string/txt_documents" />
+
+    <item
+        android:id="@+id/roomsFragment"
+        android:icon="@drawable/ic_room_24"
+        android:title="@string/txt_rooms" />
+
+    <item
+        android:id="@+id/trashFragment"
+        android:icon="@drawable/ic_trash_24"
+        android:title="@string/txt_trash" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_account_24"
+        android:title="@string/txt_profile" />
+
+</menu>
